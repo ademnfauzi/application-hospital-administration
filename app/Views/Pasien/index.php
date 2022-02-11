@@ -6,11 +6,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> DATA DOKUMEN </b></h1> 
+             <h1><b> DATA PASIEN </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Data Dokumen</li>
+              <li class="breadcrumb-item active">Data Pasien</li>
             </ol>
           </div>
         </div>
@@ -30,65 +30,46 @@
           </div>
         </div>
       <?php endif; ?>
-       <!-- data -->
-      
-
-      <div class="card">
-    
+          <div class="card">
             <div class="card-body">
               <table id="table1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NAMA DOKUMEN</th>
-                  <th>PROKER</th>
-                  <th>DIVISI</th>
-                  <th>PERIODE</th>
-                  <th>STATUS</th>
-                  <th>KETERANGAN</th>
-                  <th>FILE</th>
+                  <th>KODE PASIEN</th>
+                  <th>NAMA</th>
+                  <th>NIK</th>
                   <th>AKSI</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($dokumen as $d) : ?>
+                <?php foreach($pasien as $u) : ?>
                 <tr>
-                  <td><?= $d['nama_dokumen']; ?></td>
-                  <td><?= $d['nama_proker']; ?></td>
-                  <td><?= $d['nama_divisi']; ?></td>
-                  <td><?= $d['periode']; ?></td>
-                  <td>
-                      <?php if($d['status_dokumen'] === 'Terverifikasi') : ?> 
-                        <span class="badge badge-success"><?= $d['status_dokumen']; ?></span>
-                      <?php else : ?>
-                        <span class="badge badge-danger"><?= $d['status_dokumen']; ?></span>
-                      <?php endif; ?>
-                  </td>
-                  <td><?= $d['keterangan']; ?></td>
-                  <td>
-                    <a href="<?= base_url('Assets/dokumen') .'/'. $d['file'] ?>" target="_blank">Download File</a>
-                  </td>
-                  <td>
+                <td><?= $u['kode_pasien']; ?></td>
+                <td><?= $u['nama']; ?></td>
+                <td><?= $u['nik']; ?></td>
+                <td>
+                  <!-- <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+                  <a href="<?= base_url('Pasien/detail') .'/' . $u['id_pasien'] .'/' . $u['kode_pasien'];  ?>" class="btn btn-info">
+                  <i class="fas fa-info-circle"></i></a>
                   
                   <!-- </button> -->
-                  <a href="<?= base_url('Dokumen/edit') .'/' . $d['id_dokumen']; ?>" class="btn btn-warning">
+                  <a href="<?= base_url('Pasien/edit') .'/' . $u['id_pasien'] .'/' . $u['kode_pasien']; ?>" class="btn btn-warning">
                   <i class="fas fa-user-edit"></i>
                   
                   </a>
-                  <a href="<?= base_url('Dokumen/delete') .'/' . $d['id_dokumen']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ?');">
+                  <a href="<?= base_url('Pasien/delete') .'/' . $u['id_pasien'] .'/' . $u['kode_pasien']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ?');">
                   <i class="fas fa-trash"></i>
                   
                   </a>
-                  </td>
+                </td>
                 </tr>
                 <?php endforeach; ?>
                 </tfoot>
               </table>
             </div>
             <!-- /.card-body -->
-      </div>
-    <section class="content">
-
-
-
-</div>
-  <?= $this->endSection(); ?>
+          </div>
+    </section>
+    
+  </div>
+    <?= $this->endSection(); ?>

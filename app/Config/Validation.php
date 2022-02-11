@@ -55,38 +55,30 @@ class Validation
         'level' => 'required',
         'status' => 'required',
 	];
-	public $anggota = [
+	public $pasien = [
 		'nama' => 'required',
-        'npm' => 'required|is_unique[anggota.npm]|integer',
-        // 'email' => 'valid_email|is_unique[anggota.email]',
-        // 'phone' => 'required|integer',
-        'jabatan' => 'required',
-        'divisi' => 'required',
-        'periode' => 'required',
+        'nik' => 'required|is_unique[pasien.nik]|integer',
+        'phone' => 'required',
         'status' => 'required',
-        'image' => 'is_image[image]|ext_in[image,png,jpg,jpeg,gif]|max_size[image,4096]'
 	];
-	public $anggota_edit = [
+	public $pasien_edit = [
 		'nama' => 'required',
-        'npm' => 'required|integer',
-        // 'email' => 'valid_email',
-        // 'phone' => 'required|integer',
-        'jabatan' => 'required',
-        'divisi' => 'required',
-        'periode' => 'required',
+        'nik' => 'required|integer',
+        'phone' => 'required',
         'status' => 'required',
-        'image' => 'is_image[image]|ext_in[image,png,jpg,jpeg,gif]|max_size[image,4096]'
 	];
-	public $proker = [
+	public $dokter = [
 		'nama' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
         'divisi' => 'required',
-        'periode' => 'required',
         'status' => 'required',
  	];
-	public $proker_edit = [
+	public $dokter_edit = [
 		'nama' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
         'divisi' => 'required',
-        'periode' => 'required',
         'status' => 'required',
  	];
 	public $dokumen = [

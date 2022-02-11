@@ -104,7 +104,6 @@ if(Session()->get('level') === 'Admin') : ?>
                   <select class="form-select" id="level" required name="level">
                     <option selected disabled value="">-Pilih Level-</option>
                     <option value="Admin" <?= ($user['level'] == 'Admin') ? 'selected' : ''?>>Admin</option>
-                    <option value="BPH" <?= ($user['level'] == 'BPH') ? 'selected' : ''?>>BPH</option>
                     <option value="User" <?= ($user['level'] == 'User') ? 'selected' : ''?>>User</option>
                   </select>
                   <div class="invalid-feedback">

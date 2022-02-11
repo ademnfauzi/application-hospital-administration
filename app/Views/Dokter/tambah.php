@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> TAMBAH PROGRAM KERJA </b></h1> 
+             <h1><b> TAMBAH DOKTER </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('Proker') ?>">Data Proker</a></li>
-              <li class="breadcrumb-item active">Edit Proker</li>
+              <li class="breadcrumb-item"><a href="<?= base_url('Dokter') ?>">Data Dokter</a></li>
+              <li class="breadcrumb-item active">Tambah Dokter</li>
             </ol>
           </div>
         </div>
@@ -41,7 +41,7 @@
                     </div>
 
                   <?php } ?>
-    <form action="<?= base_url('Proker/save') ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    <form action="<?= base_url('Dokter/save') ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
       <div class="container">
           <div class="card card-info">
               <div class="card-header">
@@ -49,10 +49,10 @@
               </div>
               <?= csrf_field(); ?>
               <div class="card-body">
-                <label for="nama" style="font-size: 20px;" class="form-label">Nama Kegiatan*</label>
+                <label for="nama" style="font-size: 20px;" class="form-label">Nama*</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="spannama"><i class="fas fa-user"></i></span>
-                  <input type="text" class="form-control" id="nama" aria-describedby="inputGroupPrepend" required name="nama" value="<?= old('nama'); ?>">
+                  <input type="text" class="form-control" id="nama" required aria-describedby="inputGroupPrepend"  name="nama" value="<?= old('nama'); ?>">
                   <div class="invalid-feedback">
                     Please fill in the coloumn name.
                   </div>
@@ -60,47 +60,43 @@
               </div>
               
               <div class="card-body">
-                <label for="keterangan" style="font-size: 20px;" class="form-label">Keterangan</label>
+                <label for="email" style="font-size: 20px;" class="form-label">Email*</label>
                 <div class="input-group has-validation">
-                  <span class="input-group-text" id="spanketerangan"><i class="fas fa-info"></i></span>
-                  <textarea name="keterangan" id="keterangan" class="form-control" cols="130" rows="5" ><?= old('keterangan'); ?></textarea>
+                  <span class="input-group-text" id="spanemail"><i class="fas fa-envelope"></i></span>
+                  <input type="text" class="form-control" id="email" aria-describedby="inputGroupPrepend" name="email" value="<?= old('email'); ?>" required>
                   <div class="invalid-feedback">
-                    Please fill in the coloumn keterangan.
+                    Please fill in the coloumn email.
                   </div>
                 </div>
               </div>
               
               <div class="card-body">
-                <label for="jabatan" style="font-size: 20px;" class="form-label">Divisi*</label>
-                  <select class="form-select" id="jabatan" required name="divisi">
-                    <option selected disabled value="">-Pilih Divisi-</option>
-                    <?php foreach($divisi as $d) : ?>
-                    <option value="<?= $d['id_divisi']; ?>" <?= (old('divisi') == $d['id_divisi']) ? 'selected' : ''?>><?= $d['nama']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
+                <label for="phone" style="font-size: 20px;" class="form-label">Phone*</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="spanphone"><i class="fas fa-solid fa-phone"></i></span>
+                  <input type="text" class="form-control" id="phone" required aria-describedby="inputGroupPrepend"  name="phone" value="<?= old('phone'); ?>">
                   <div class="invalid-feedback">
-                    Please select a valid division.
+                    Please fill in the coloumn phone.
                   </div>
+                </div>
               </div>
 
-              <div class="card-body">
-                <label for="periode" style="font-size: 20px;" class="form-label">Periode*</label>
-                  <select class="form-select" id="periode" required name="periode">
-                    <option selected disabled value="">-Pilih Periode-</option>
-                    <option value="2020/2021" <?= (old('periode') == '2020/2021') ? 'selected' : ''?>>2020/2021</option>
-                    <option value="2021/2022" <?= (old('periode') == '2021/2022') ? 'selected' : ''?>>2021/2022</option>
-                    <option value="2022/2023" <?= (old('periode') == '2022/2023') ? 'selected' : ''?>>2022/2023</option>
-                    <option value="2023/2024" <?= (old('periode') == '2023/2024') ? 'selected' : ''?>>2023/2024</option>
-                    <option value="2024/2025" <?= (old('periode') == '2024/2025') ? 'selected' : ''?>>2024/2025</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid periode.
-                  </div>
-              </div>
-
+                <div class="card-body">
+                    <label for="divisi" style="font-size: 20px;" class="form-label">Divisi*</label>
+                    <select class="form-select" id="divisi" required name="divisi">
+                        <option selected disabled value="">-Pilih Divisi-</option>
+                        <option value="Poli Umum" <?= (old('divisi') == 'Poli Umum') ? 'selected' : ''?>>Poli Umum</option>
+                        <option value="Poli Anak" <?= (old('divisi') == 'Poli Anak') ? 'selected' : ''?>>Poli Anak</option>
+                        <option value="Poli Gigi" <?= (old('divisi') == 'Poli Gigi') ? 'selected' : ''?>>Poli Gigi</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid division.
+                    </div>
+                </div>
+              
               <div class="card-body">
                 <label for="status" style="font-size: 20px;" class="form-label">Status*</label>
-                  <select class="form-select" id="status" required name="status">
+                  <select class="form-select" id="status"  name="status" required>
                     <option selected disabled value="">-Pilih Status-</option>
                     <option value="Aktif" <?= (old('status') == 'Aktif') ? 'selected' : ''?>>Aktif</option>
                     <option value="Tidak Aktif" <?= (old('status') == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
@@ -109,18 +105,26 @@
                     Please select a valid status.
                   </div>
               </div>
-              
+
+              <div class="card-body">
+                <label for="image" style="font-size: 20px;" class="form-label">Gambar Profile</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-images"></i></span>
+                  </div>
+                  <br>
+                  <input type="file" class="form-control custom-file-label" placeholder="" id="image" onchange="imgPreview()" name="image">
+                </div>
+                  <br>
+                  <img src="<?= base_url('Assets/img/profile/default.png') ?>" alt="" class="preview" style="width: 200px; height:200px;">
+              </div>
+
               <button type="submit" class="btn btn-success btn-lg">SUBMIT</button>
           </div>
       </div>
       </form>
     </section>
-
-
-</div>
-
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-
-</script>
+    
+    
+  </div>
   <?= $this->endSection(); ?>

@@ -1,18 +1,18 @@
-<?php if(Session()->get('level') === 'Admin') : ?>
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> TAMBAH USER </b></h1> 
+             <h1><b> EDIT DATA DOKTER </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('user') ?>">Data User</a></li>
-              <li class="breadcrumb-item active">Tambah User</li>
+              <li class="breadcrumb-item"><a href="<?= base_url('Dokter') ?>">Data Dokter</a></li>
+              <li class="breadcrumb-item active">Edit Dokter</li>
             </ol>
           </div>
         </div>
@@ -42,9 +42,12 @@
                     </div>
 
                   <?php } ?>
-    <form action="<?= base_url('User/save') ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    <form action="<?= base_url('Dokter/update') .'/'. $dokter['id_dokter'] .'/'. $dokter['kode_dokter']; ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    <input type="hidden" name="id_dokter" value="<?= $dokter['id_dokter']; ?>">
+    <input type="hidden" name="gambarLama" value="<?= $dokter['image']; ?>">
+              <?= csrf_field(); ?>
       <div class="container">
-          <div class="card card-info">
+          <div class="card card-warning">
               <div class="card-header">
                     <!-- <h3 class="card-title">Input Addon</h3> -->
               </div>
@@ -53,20 +56,9 @@
                 <label for="nama" style="font-size: 20px;" class="form-label">Nama*</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="spannama"><i class="fas fa-user"></i></span>
-                  <input type="text" class="form-control" id="nama" required aria-describedby="inputGroupPrepend"  name="nama" value="<?= old('nama'); ?>">
+                  <input type="text" class="form-control" id="nama" aria-describedby="inputGroupPrepend" required name="nama" value="<?= $dokter['nama']; ?>">
                   <div class="invalid-feedback">
                     Please fill in the coloumn name.
-                  </div>
-                </div>
-              </div>
-              
-              <div class="card-body">
-                <label for="username" style="font-size: 20px;" class="form-label">Username*</label>
-                <div class="input-group has-validation">
-                  <span class="input-group-text" id="spanusername"><i class="fas fa-at"></i></span>
-                  <input type="text" class="form-control" id="username" aria-describedby="inputGroupPrepend" name="username" required value="<?= old('username'); ?>">
-                  <div class="invalid-feedback">
-                    Please fill in the coloumn username.
                   </div>
                 </div>
               </div>
@@ -75,7 +67,7 @@
                 <label for="email" style="font-size: 20px;" class="form-label">Email*</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="spanemail"><i class="fas fa-envelope"></i></span>
-                  <input type="text" class="form-control" id="email" required aria-describedby="inputGroupPrepend"  name="email" value="<?= old('email'); ?>">
+                  <input type="text" class="form-control" id="email" aria-describedby="inputGroupPrepend" required name="email" value="<?= $dokter['email']; ?>">
                   <div class="invalid-feedback">
                     Please fill in the coloumn email.
                   </div>
@@ -83,50 +75,62 @@
               </div>
               
               <div class="card-body">
-                <label for="password" style="font-size: 20px;" class="form-label">Password*</label>
+                <label for="phone" style="font-size: 20px;" class="form-label">Phone</label>
                 <div class="input-group has-validation">
-                  <span class="input-group-text" id="spanpassword"><i class="fas fa-lock"></i></span>
-                  <input type="password" class="form-control" id="password" aria-describedby="inputGroupPrepend" name="password" required value="<?= old('password'); ?>" >
+                  <span class="input-group-text" id="spanphone"><i class="fas fa-phone-alt"></i></span>
+                  <input type="number" class="form-control" id="phone" aria-describedby="inputGroupPrepend" name="phone" value="<?= $dokter['phone']; ?>">
                   <div class="invalid-feedback">
-                    Please fill in the coloumn password.
+                    Please fill in the coloumn phone.
                   </div>
                 </div>
               </div>
 
               <div class="card-body">
-                <label for="level" style="font-size: 20px;" class="form-label">Level*</label>
-                  <select class="form-select" id="level"  name="level" required>
-                    <option selected disabled value="">-Pilih Level-</option>
-                    <option value="Admin" <?= (old('level') == 'Admin') ? 'selected' : ''?>>Admin</option>
-                    <option value="User" <?= (old('level') == 'User') ? 'selected' : ''?>>User</option>
+                <label for="divisi" style="font-size: 20px;" class="form-label">Divisi*</label>
+                  <select class="form-select" id="divisi" required name="divisi">
+                    <option selected disabled value="">-Pilih divisi-</option>
+                    <option value="Poli Umum" <?= ($dokter['divisi'] == 'Poli Umum') ? 'selected' : ''?>>Poli Umum</option>
+                    <option value="Poli Anak" <?= ($dokter['divisi'] == 'Poli Anak') ? 'selected' : ''?>>Poli Anak</option>
+                    <option value="Poli Gigi" <?= ($dokter['divisi'] == 'Poli Gigi') ? 'selected' : ''?>>Poli Gigi</option>
                   </select>
                   <div class="invalid-feedback">
-                    Please select a valid level.
+                    Please select a valid division.
                   </div>
               </div>
-
+              
               <div class="card-body">
                 <label for="status" style="font-size: 20px;" class="form-label">Status*</label>
-                  <select class="form-select" id="status"  name="status" required>
+                  <select class="form-select" id="status" required name="status">
                     <option selected disabled value="">-Pilih Status-</option>
-                    <option value="Aktif" <?= (old('status') == 'Aktif') ? 'selected' : ''?>>Aktif</option>
-                    <option value="Tidak Aktif" <?= (old('status') == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
+                    <option value="Aktif" <?= ($dokter['status'] == 'Aktif') ? 'selected' : ''?>>Aktif</option>
+                    <option value="Tidak Aktif" <?= ($dokter['status'] == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
                   </select>
                   <div class="invalid-feedback">
                     Please select a valid status.
                   </div>
               </div>
 
+              <div class="card-body">
+                <label for="image" style="font-size: 20px;" class="form-label">Gambar Profile</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-images"></i></span>
+                  </div>
+                  <br>
+                  <input type="file" class="form-control custom-file-label" placeholder="" id="image" onchange="imgPreview()" name="image">
+                </div>
+                  <br>
+                  <img src="<?= base_url('Assets/img/profile').'/'. $dokter['image']; ?>" alt="" class="preview" style="width: 200px; height:200px;">
+                  <div class="invalid-feedback">
+                    Please select a valid image.
+                  </div>
+              </div>
               
               <button type="submit" class="btn btn-success btn-lg">SUBMIT</button>
           </div>
       </div>
       </form>
     </section>
-    
-    
-  </div>
+
+</div>
   <?= $this->endSection(); ?>
-  <?php else : ?>
-<?= $this->extend('layout/Not_found'); ?>
-  <?php endif; ?>

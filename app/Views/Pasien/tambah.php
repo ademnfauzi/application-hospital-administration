@@ -1,4 +1,3 @@
-<?php if(Session()->get('level') !== 'User') : ?>
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <div class="content-wrapper">
@@ -7,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> TAMBAH Divisi </b></h1> 
+             <h1><b> TAMBAH PASIEN </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('Divisi') ?>">Data Divisi</a></li>
-              <li class="breadcrumb-item active">Edit Divisi</li>
+              <li class="breadcrumb-item"><a href="<?= base_url('pasien') ?>">Data Pasien</a></li>
+              <li class="breadcrumb-item active">Tambah Pasien</li>
             </ol>
           </div>
         </div>
@@ -22,7 +21,7 @@
 
     <!-- main content -->
     <section class="content">
-      <?php
+                  <?php
                     $inputs = session()->getFlashdata('inputs');
                     $errors = session()->getFlashdata('errors');
                     $success = session()->getFlashdata('success');
@@ -42,35 +41,64 @@
                     </div>
 
                   <?php } ?>
-    <form action="<?= base_url('Divisi/save') ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
+    <form action="<?= base_url('Pasien/save') ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
       <div class="container">
           <div class="card card-info">
               <div class="card-header">
                     <!-- <h3 class="card-title">Input Addon</h3> -->
               </div>
               <?= csrf_field(); ?>
-
               <div class="card-body">
-                <label for="nama" style="font-size: 20px;" class="form-label">Nama Divisi</label>
-                <input type="text" class="form-control" id="nama" aria-describedby="inputGroupPrepend" required name="nama" value="<?= old('nama'); ?>"> <!-- old untuk inputan -->
+                <label for="nama" style="font-size: 20px;" class="form-label">Nama*</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="spannama"><i class="fas fa-user"></i></span>
+                  <input type="text" class="form-control" id="nama" required aria-describedby="inputGroupPrepend"  name="nama" value="<?= old('nama'); ?>">
+                  <div class="invalid-feedback">
+                    Please fill in the coloumn name.
+                  </div>
+                </div>
               </div>
-
+              
               <div class="card-body">
-                <label for="status" style="font-size: 20px;" class="form-label">Status</label>
-                  <select class="form-select" id="status" required name="status">
+                <label for="nik" style="font-size: 20px;" class="form-label">NIK*</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="spannik"><i class="fas fa-solid fa-list-ol"></i></span>
+                  <input type="text" class="form-control" id="nik" aria-describedby="inputGroupPrepend" name="nik" required value="<?= old('nik'); ?>">
+                  <div class="invalid-feedback">
+                    Please fill in the coloumn nik.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <label for="phone" style="font-size: 20px;" class="form-label">Phone*</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="spanphone"><i class="fas fa-solid fa-phone"></i></span>
+                  <input type="text" class="form-control" id="phone" required aria-describedby="inputGroupPrepend"  name="phone" value="<?= old('phone'); ?>">
+                  <div class="invalid-feedback">
+                    Please fill in the coloumn phone.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <label for="status" style="font-size: 20px;" class="form-label">Status*</label>
+                  <select class="form-select" id="status"  name="status" required>
                     <option selected disabled value="">-Pilih Status-</option>
                     <option value="Aktif" <?= (old('status') == 'Aktif') ? 'selected' : ''?>>Aktif</option>
                     <option value="Tidak Aktif" <?= (old('status') == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
                   </select>
+                  <div class="invalid-feedback">
+                    Please select a valid status.
+                  </div>
               </div>
+
               <button type="submit" class="btn btn-success btn-lg">SUBMIT</button>
           </div>
       </div>
       </form>
     </section>
     
+    
   </div>
   <?= $this->endSection(); ?>
-  <?php else : ?>
-<?= $this->extend('layout/Not_found'); ?>
-  <?php endif; ?>

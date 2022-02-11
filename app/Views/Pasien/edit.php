@@ -6,12 +6,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> EDIT PROGRAM KERJA </b></h1> 
+             <h1><b> EDIT PASIEN </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('Proker') ?>">Data Proker</a></li>
-              <li class="breadcrumb-item active">Edit Proker</li>
+              <li class="breadcrumb-item"><a href="<?= base_url('pasien') ?>">Data Pasien</a></li>
+              <li class="breadcrumb-item active">Edit Pasien</li>
             </ol>
           </div>
         </div>
@@ -41,76 +41,60 @@
                     </div>
 
                   <?php } ?>
-    <form action="<?= base_url('Proker/update') .'/'. $proker['id_proker']; ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
-    <input type="hidden" name="id_proker" value="<?= $proker['id_proker']; ?>">
-              <?= csrf_field(); ?>
+    <form action="<?= base_url('Pasien/update') .'/'. $pasien['id_pasien'] .'/'. $pasien['kode_pasien']; ?>" method="post" class="row g-3 needs-validation" novalidate enctype="multipart/form-data">
       <div class="container">
-          <div class="card card-warning">
+          <div class="card card-info">
               <div class="card-header">
                     <!-- <h3 class="card-title">Input Addon</h3> -->
               </div>
               <?= csrf_field(); ?>
+              <input type="hidden" name="id_pasien" value="<?= $pasien['id_pasien']; ?>">
+              <input type="hidden" name="kode_pasien" value="<?= $pasien['kode_pasien']; ?>">
               <div class="card-body">
-                <label for="nama" style="font-size: 20px;" class="form-label">Nama Kegiatan*</label>
+                <label for="nama" style="font-size: 20px;" class="form-label">Nama*</label>
                 <div class="input-group has-validation">
                   <span class="input-group-text" id="spannama"><i class="fas fa-user"></i></span>
-                  <input type="text" class="form-control" id="nama" aria-describedby="inputGroupPrepend" required name="nama" value="<?= $proker['nama_kegiatan']; ?>">
+                  <input type="text" class="form-control" id="nama" aria-describedby="inputGroupPrepend" required name="nama" value="<?= $pasien['nama']; ?>">
                   <div class="invalid-feedback">
                     Please fill in the coloumn name.
                   </div>
                 </div>
               </div>
-              
+
               <div class="card-body">
-                <label for="keterangan" style="font-size: 20px;" class="form-label">Keterangan</label>
+                <label for="nik" style="font-size: 20px;" class="form-label">NIK*</label>
                 <div class="input-group has-validation">
-                  <span class="input-group-text" id="spanketerangan"><i class="fas fa-info"></i></span>
-                  <textarea name="keterangan" id="keterangan" class="form-control" cols="130" rows="5" ><?= $proker['keterangan'] ?></textarea>
+                  <span class="input-group-text" id="spannik"><i class="fas fa-solid fa-list-ol"></i></span>
+                  <input type="text" class="form-control" id="nik" aria-describedby="inputGroupPrepend" name="nik" required value="<?= $pasien['nik']; ?>">
                   <div class="invalid-feedback">
-                    Please fill in the coloumn keterangan.
+                    Please fill in the coloumn nik.
                   </div>
                 </div>
               </div>
               
               <div class="card-body">
-                <label for="jabatan" style="font-size: 20px;" class="form-label">Divisi*</label>
-                  <select class="form-select" id="jabatan" required name="divisi">
-                    <option selected disabled value="">-Pilih Divisi-</option>
-                    <?php foreach($divisi as $d) : ?>
-                    <option value="<?= $d['id_divisi']; ?>" <?= ($proker['id_divisi'] == $d['id_divisi']) ? 'selected' : ''?>><?= $d['nama']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
+                <label for="phone" style="font-size: 20px;" class="form-label">Phone*</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text" id="spanphone"><i class="fas fa-solid fa-phone"></i></span>
+                  <input type="text" class="form-control" id="phone" required aria-describedby="inputGroupPrepend"  name="phone" value="<?= $pasien['phone']; ?>">
                   <div class="invalid-feedback">
-                    Please select a valid division.
+                    Please fill in the coloumn phone.
                   </div>
-              </div>
-
-              <div class="card-body">
-                <label for="periode" style="font-size: 20px;" class="form-label">Periode*</label>
-                  <select class="form-select" id="periode" required name="periode">
-                    <option selected disabled value="">-Pilih Periode-</option>
-                    <option value="2020/2021" <?= ($proker['periode'] == '2020/2021') ? 'selected' : ''?>>2020/2021</option>
-                    <option value="2021/2022" <?= ($proker['periode'] == '2021/2022') ? 'selected' : ''?>>2021/2022</option>
-                    <option value="2022/2023" <?= ($proker['periode'] == '2022/2023') ? 'selected' : ''?>>2022/2023</option>
-                    <option value="2023/2024" <?= ($proker['periode'] == '2023/2024') ? 'selected' : ''?>>2023/2024</option>
-                    <option value="2024/2025" <?= ($proker['periode'] == '2024/2025') ? 'selected' : ''?>>2024/2025</option>
-                  </select>
-                  <div class="invalid-feedback">
-                    Please select a valid periode.
-                  </div>
+                </div>
               </div>
 
               <div class="card-body">
                 <label for="status" style="font-size: 20px;" class="form-label">Status*</label>
                   <select class="form-select" id="status" required name="status">
                     <option selected disabled value="">-Pilih Status-</option>
-                    <option value="Aktif" <?= ($proker['status'] == 'Aktif') ? 'selected' : ''?>>Aktif</option>
-                    <option value="Tidak Aktif" <?= ($proker['status'] == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
+                    <option value="Aktif" <?= ($pasien['status'] == 'Aktif') ? 'selected' : ''?>>Aktif</option>
+                    <option value="Tidak Aktif" <?= ($pasien['status'] == 'Tidak Aktif') ? 'selected' : ''?>>Tidak Aktif</option>
                   </select>
                   <div class="invalid-feedback">
                     Please select a valid status.
                   </div>
               </div>
+
               
               <button type="submit" class="btn btn-success btn-lg">SUBMIT</button>
           </div>
@@ -119,5 +103,6 @@
     </section>
 
 
-</div>
+    <!-- </div> -->
+  </div>
   <?= $this->endSection(); ?>

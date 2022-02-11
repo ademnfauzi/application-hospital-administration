@@ -6,11 +6,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-             <h1><b> DATA DIVISI </b></h1> 
+             <h1><b> DATA DOKTER </b></h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active">Data Divisi</li>
+              <li class="breadcrumb-item active">Data Dokter</li>
             </ol>
           </div>
         </div>
@@ -20,11 +20,7 @@
 
     <!-- main content -->
     <section class="content">
-       <?php
-
-use CodeIgniter\Session\Session;
-
-if (session()->getFlashdata('pesan')) : ?>
+      <?php if (session()->getFlashdata('pesan')) : ?>
         <div class="alert alert-success d-flex align-items-center" role="alert">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="success:">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
@@ -34,44 +30,46 @@ if (session()->getFlashdata('pesan')) : ?>
           </div>
         </div>
       <?php endif; ?>
-    <div class="card">
+          <div class="card">
             <div class="card-body">
               <table id="table1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>NAMA DIVISI</th>
-                  <th>STATUS</th>
-                  <?php if(Session()->get('level') !== 'User') : ?>
-                    <th>AKSI</th>
-                    <?php endif; ?>
-                  </tr>
+                  <th>KODE DOKTER</th>
+                  <th>NAMA</th>
+                  <th>DIVISI</th>
+                  <th>AKSI</th>
+                </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($divisi as $div) : ?>
+                <?php foreach($dokter as $u) : ?>
                 <tr>
-                  <td><?= $div['nama_divisi']; ?></td>
-                  <td><?= $div['status']; ?></td>
+                <td><?= $u['kode_dokter']; ?></td>
+                <td><?= $u['nama']; ?></td>
+                <td><?= $u['divisi']; ?></td>
+                <td>
+                  <!-- <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+                  <a href="<?= base_url('Dokter/detail') .'/' . $u['id_dokter'] .'/' . $u['kode_dokter'];  ?>" class="btn btn-info">
+                  <i class="fas fa-info-circle"></i></a>
                   
-                  <?php if(Session()->get('level') !== 'User') : ?>
-                    <td>
-                    <!-- Edit -->
-                    <a href="<?= base_url('Divisi/edit') .'/' . $div['id_divisi']; ?>" class="btn btn-warning me-1" title="edit">
-                      <i class="fas fa-user-edit"></i></a>
-
-                      <!-- Delete -->
-                      <a href="<?= base_url('Divisi/delete') .'/' . $div['id_divisi']; ?>" class="btn btn-danger" title="delete " onclick="return confirm('Apakah Anda yakin ?');">
-                  <i class="fas fa-trash"></i></a>        
-                  </td>
-                <?php endif; ?>
+                  <!-- </button> -->
+                  <a href="<?= base_url('Dokter/edit') .'/' . $u['id_dokter'] .'/' . $u['kode_dokter']; ?>" class="btn btn-warning">
+                  <i class="fas fa-user-edit"></i>
+                  
+                  </a>
+                  <a href="<?= base_url('Dokter/delete') .'/' . $u['id_dokter'] .'/' . $u['kode_dokter']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ?');">
+                  <i class="fas fa-trash"></i>
+                  
+                  </a>
+                </td>
                 </tr>
                 <?php endforeach; ?>
+                </tfoot>
               </table>
             </div>
-    </div>
+            <!-- /.card-body -->
+          </div>
     </section>
-
-
-
-
-</div>
+    
+  </div>
   <?= $this->endSection(); ?>
