@@ -62,64 +62,48 @@
         
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?= $anggotaCount; ?></h3>
+                <h3><?= $PasienCount; ?></h3>
 
-                <p>Anggota</p>
+                <p>Pasien</p>
               </div>
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="<?= base_url('Anggota') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('Pasien') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?= $prokerCount; ?></h3>
+                <h3><?= $DokterCount; ?></h3>
 
-                <p>Program Kerja</p>
+                <p>Dokter</p>
               </div>
               <div class="icon">
               <i class="fas fa-briefcase"></i>
               </div>
-              <a href="<?= base_url('Proker') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('Dokter') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          <div class="col-lg-4 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?= $laporanKeluar; ?></h3>
+                <h3><?= $PendaftaranCount; ?></h3>
 
-                <p>Laporan Keluar</p>
+                <p>Pendaftaran</p>
               </div>
               <div class="icon">
             <i class="fas fa-clipboard-check"></i>
               </div>
-              <a href="<?= base_url('Laporan') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3><?= $arsipDokumenCount; ?></h3>
-
-                <p>Arsip Dokumen</p>
-              </div>
-              <div class="icon">
-              <i class="fas fa-file-archive"></i>
-              </div>
-              <a href="<?= base_url('Arsip_dokumen') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?= base_url('Pendaftaran') ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -337,7 +321,7 @@
       labels  : [''],
       datasets: [
         {
-          label               : 'Program Kerja',
+          label               : 'Pasien',
           backgroundColor     : 'rgba(60,141,188,0.9)',
           borderColor         : 'rgba(60,141,188,0.8)',
           pointRadius          : false,
@@ -345,10 +329,10 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [<?= $prokerCount; ?>]
+          data                : [<?= $PasienCount; ?>]
         },
         {
-          label               : 'Laporan keluar',
+          label               : 'Dokter',
           backgroundColor     : 'rgba(210, 214, 222, 1)',
           borderColor         : 'rgba(210, 214, 222, 1)',
           pointRadius         : false,
@@ -356,7 +340,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [<?= $laporanKeluar; ?>]
+          data                : [<?= $DokterCount; ?>]
         },
       ]
     }
@@ -411,14 +395,13 @@
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
       labels: [
-          'Anggota', 
-          'Program Kerja',
-          'Arsip Anggota', 
-          'Arsip Dokumen',  
+          'Pasien', 
+          'Dokter',
+          'Pendaftaran', 
       ],
       datasets: [
         {
-          data: [<?= $anggotaCount; ?>, <?= $prokerCount; ?>, <?= $arsipPengurusCount; ?>, <?= $arsipDokumenCount; ?>],
+          data: [<?= $PasienCount; ?>, <?= $DokterCount; ?>, <?= $PendaftaranCount; ?>],
           backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
         }
       ]

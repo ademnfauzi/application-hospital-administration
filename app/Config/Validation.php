@@ -81,31 +81,18 @@ class Validation
         'divisi' => 'required',
         'status' => 'required',
  	];
-	public $dokumen = [
-		'nama' => 'required',
-        // 'keterangan' => 'required',
-        'divisi' => 'required',
-        'proker' => 'required',
-        'periode' => 'required',
-		'file' => 'required|ext_in[file,pdf,docx,xlsx,ppt,pptx,doc,xls,zip,rar]|max_size[file,4096]'
+	public $pendaftaran = [
+		'id_pasien' => 'required',
+        'id_dokter' => 'required',
+        'waktu' => 'required',
+        'status' => 'required',
  	];
-	public $dokumen_edit = [
-		'nama' => 'required',
-        // 'keterangan' => 'required',
-        'divisi' => 'required',
-        'proker' => 'required',
-        'periode' => 'required',
-        // 'status' => 'required',
-		'file' => 'ext_in[file,pdf,docx,xlsx,ppt,pptx,doc,xls,zip,rar]|max_size[file,4096]'
+	public $pendaftaran_edit = [
+		'id_pasien' => 'required',
+        'id_dokter' => 'required',
+        'waktu' => 'required',
+        'status' => 'required',
  	];
-	public $divisi = [
-		'nama' => 'required',
-		'status' => 'required'
- 	];
-	public $divisi_edit = [
-		'nama' => 'required',
-		'status' => 'required' 	
-	];
 
 	//--------------------------------------------------------------------
 	// Rules

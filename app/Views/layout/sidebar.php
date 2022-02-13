@@ -75,14 +75,12 @@ use CodeIgniter\Session\Session;
                   <p>Data Pasien</p>
                 </a>
               </li>
-              <?php if(Session()->get('level') !== 'User') : ?> 
               <li class="nav-item">
                 <a href="<?= base_url('Pasien/tambah') ?>" class="nav-link <?= ($title === 'Tambah Pasien') ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Pasien</p>
                 </a>
               </li>
-              <?php endif; ?>
             </ul>
           </li>
 
@@ -102,14 +100,37 @@ use CodeIgniter\Session\Session;
                   <p>Data Dokter</p>
                 </a>
               </li>
-              <?php if(Session()->get('level') !== 'User') : ?> 
               <li class="nav-item">
                 <a href="<?= base_url('Dokter/tambah') ?>" class="nav-link <?= ($title === 'Tambah Dokter') ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Dokter</p>
                 </a>
               </li>
-              <?php endif; ?>
+            </ul>
+          </li>
+
+          <!-- pendaftaran -->
+          <li class="nav-item has-treeview <?= ($title === 'Data Pendaftaran' ) ? 'menu-open' : ''; ?> <?= ($title === 'Tambah Pendaftaran' ) ? 'menu-open' : ''; ?> <?= ($title === 'Edit Pendaftaran' ) ? 'menu-open' : ''; ?>">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-registered"></i>
+              <p>
+                Pendaftaran
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('Pendaftaran') ?>" class="nav-link <?= ($title === 'Data Pendaftaran') ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon "></i>
+                  <p>Data Pendaftaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= base_url('Pendaftaran/tambah') ?>" class="nav-link <?= ($title === 'Tambah Pendaftaran') ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Pendaftaran</p>
+                </a>
+              </li>
             </ul>
           </li>
      
